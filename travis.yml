@@ -1,0 +1,9 @@
+language: csharp
+solution: SpellingCorrector.sln
+
+install:
+  - nuget restore SpellingCorrector.sln
+  - nuget install NUnit.Runners -Version 2.6.4 -OutputDirectory testrunner
+script:
+  - xbuild /p:Configuration=Release SpellingCorrector.sln
+  - mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./src/SpellingCorrector.Tests/bin/Release/SpellingCorrector.Tests.dll
